@@ -21,15 +21,22 @@
     NSString *authValue = [NSString stringWithFormat:@"Basic %@", [credentialData base64EncodingWithLineLength:0]];
     [request setValue:authValue forHTTPHeaderField:@"Authorization"];
 }
+
+- (NSURLRequest *) createRequest:(NSString *)param apiKey:(NSString *)apiKey
+{
+    NSURL *url = [NSURL URLWithString:[kASANA_API_URL stringByAppendingString:param]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [self addBasicAuthentication:request apiKey:apiKey];
+    return request;
+}
+
 @end
 
 @implementation MTAsana
 
 - (void) login:(NSString *)apiKey callback:(void (^)(NSError *, NSDictionary *))callback
 {
-    NSURL *url = [NSURL URLWithString:[kASANA_API_URL stringByAppendingString:@"/users/me"]];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [self addBasicAuthentication:request apiKey:apiKey];
+    NSURLRequest *request = [self createRequest:@"/users/me" apiKey:apiKey];
 
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (error) {
@@ -44,9 +51,7 @@
 
 - (void) projects:(NSString *)apiKey workspace:(NSString *)workspace callback:(void (^)(NSError *, NSArray *))callback
 {
-    NSURL *url = [NSURL URLWithString:[kASANA_API_URL stringByAppendingFormat:@"/projects?workspace=%@", workspace]];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [self addBasicAuthentication:request apiKey:apiKey];
+    NSURLRequest *request = [self createRequest:[NSString stringWithFormat:@"/projects?workspace=%@", workspace] apiKey:apiKey];
 
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (error) {
