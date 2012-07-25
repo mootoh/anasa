@@ -30,38 +30,31 @@
     return request;
 }
 
+- (void) sendAsynchrnousRequest:(NSString *)param apiKey:(NSString *)apiKey callback:(void (^)(NSError *, NSObject *))callback
+{
+    NSURLRequest *request = [self createRequest:param apiKey:apiKey];
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        if (error) {
+            callback(error, nil);
+            return;
+        }
+
+        callback(nil, [[data JSONValue] objectForKey:@"data"]);
+    }];
+}
+
 @end
 
 @implementation MTAsana
 
-- (void) login:(NSString *)apiKey callback:(void (^)(NSError *, NSDictionary *))callback
+- (void) login:(NSString *)apiKey callback:(void (^)(NSError *, NSObject *))callback
 {
-    NSURLRequest *request = [self createRequest:@"/users/me" apiKey:apiKey];
-
-    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        if (error) {
-            callback(error, nil);
-            return;
-        }
-
-        NSDictionary *user = [(NSDictionary *)[data JSONValue] objectForKey:@"data"];
-        callback(nil, user);
-    }];
+    [self sendAsynchrnousRequest:@"/users/me" apiKey:apiKey callback:callback];
 }
 
-- (void) projects:(NSString *)apiKey workspace:(NSString *)workspace callback:(void (^)(NSError *, NSArray *))callback
+- (void) projects:(NSString *)apiKey workspace:(NSString *)workspace callback:(void (^)(NSError *, NSObject *))callback
 {
-    NSURLRequest *request = [self createRequest:[NSString stringWithFormat:@"/projects?workspace=%@", workspace] apiKey:apiKey];
-
-    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        if (error) {
-            callback(error, nil);
-            return;
-        }
-
-        NSArray *projects = [(NSDictionary *)[data JSONValue] objectForKey:@"data"];
-        callback(nil, projects);
-    }];
+    [self sendAsynchrnousRequest:[NSString stringWithFormat:@"/projects?workspace=%@", workspace] apiKey:apiKey callback:callback];
 }
 
 @end
