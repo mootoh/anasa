@@ -8,13 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		92A33CC915BFAED300F46B97 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92A33CC815BFAED300F46B97 /* Foundation.framework */; };
-		92A33CCF15BFAED300F46B97 /* anasa.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A33CCE15BFAED300F46B97 /* anasa.m */; };
+		92A33CCF15BFAED300F46B97 /* MTAsana.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A33CCE15BFAED300F46B97 /* MTAsana.m */; };
 		92A33CD715BFAED300F46B97 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92A33CD615BFAED300F46B97 /* SenTestingKit.framework */; };
 		92A33CD915BFAED300F46B97 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92A33CD815BFAED300F46B97 /* UIKit.framework */; };
 		92A33CDA15BFAED300F46B97 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92A33CC815BFAED300F46B97 /* Foundation.framework */; };
 		92A33CDD15BFAED300F46B97 /* libanasa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92A33CC515BFAED300F46B97 /* libanasa.a */; };
 		92A33CE315BFAED300F46B97 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92A33CE115BFAED300F46B97 /* InfoPlist.strings */; };
 		92A33CE615BFAED300F46B97 /* anasaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A33CE515BFAED300F46B97 /* anasaTests.m */; };
+		92A33CF115BFB54100F46B97 /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 92A33CEF15BFB54100F46B97 /* NSData+Base64.h */; };
+		92A33CF215BFB54100F46B97 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A33CF015BFB54100F46B97 /* NSData+Base64.m */; };
+		92A33CF315BFB6C600F46B97 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A33CF015BFB54100F46B97 /* NSData+Base64.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,16 +33,18 @@
 /* Begin PBXFileReference section */
 		92A33CC515BFAED300F46B97 /* libanasa.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libanasa.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		92A33CC815BFAED300F46B97 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		92A33CCC15BFAED300F46B97 /* anasa-Prefix.pch */ = {isa = PBXFileReference; path = "anasa-Prefix.pch"; sourceTree = "<group>"; };
-		92A33CCD15BFAED300F46B97 /* anasa.h */ = {isa = PBXFileReference; path = anasa.h; sourceTree = "<group>"; };
-		92A33CCE15BFAED300F46B97 /* anasa.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = anasa.m; sourceTree = "<group>"; };
+		92A33CCC15BFAED300F46B97 /* anasa-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "anasa-Prefix.pch"; sourceTree = "<group>"; };
+		92A33CCD15BFAED300F46B97 /* MTAsana.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTAsana.h; sourceTree = "<group>"; };
+		92A33CCE15BFAED300F46B97 /* MTAsana.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTAsana.m; sourceTree = "<group>"; };
 		92A33CD515BFAED300F46B97 /* anasaTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = anasaTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		92A33CD615BFAED300F46B97 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		92A33CD815BFAED300F46B97 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		92A33CE015BFAED300F46B97 /* anasaTests-Info.plist */ = {isa = PBXFileReference; path = "anasaTests-Info.plist"; sourceTree = "<group>"; };
+		92A33CE015BFAED300F46B97 /* anasaTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "anasaTests-Info.plist"; sourceTree = "<group>"; };
 		92A33CE215BFAED300F46B97 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		92A33CE415BFAED300F46B97 /* anasaTests.h */ = {isa = PBXFileReference; path = anasaTests.h; sourceTree = "<group>"; };
+		92A33CE415BFAED300F46B97 /* anasaTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = anasaTests.h; sourceTree = "<group>"; };
 		92A33CE515BFAED300F46B97 /* anasaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = anasaTests.m; sourceTree = "<group>"; };
+		92A33CEF15BFB54100F46B97 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		92A33CF015BFB54100F46B97 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +102,8 @@
 		92A33CCA15BFAED300F46B97 /* anasa */ = {
 			isa = PBXGroup;
 			children = (
-				92A33CCD15BFAED300F46B97 /* anasa.h */,
-				92A33CCE15BFAED300F46B97 /* anasa.m */,
+				92A33CCD15BFAED300F46B97 /* MTAsana.h */,
+				92A33CCE15BFAED300F46B97 /* MTAsana.m */,
 				92A33CCB15BFAED300F46B97 /* Supporting Files */,
 			);
 			path = anasa;
@@ -107,6 +112,8 @@
 		92A33CCB15BFAED300F46B97 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				92A33CEF15BFB54100F46B97 /* NSData+Base64.h */,
+				92A33CF015BFB54100F46B97 /* NSData+Base64.m */,
 				92A33CCC15BFAED300F46B97 /* anasa-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -138,6 +145,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92A33CF115BFB54100F46B97 /* NSData+Base64.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,7 +247,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92A33CCF15BFAED300F46B97 /* anasa.m in Sources */,
+				92A33CCF15BFAED300F46B97 /* MTAsana.m in Sources */,
+				92A33CF215BFB54100F46B97 /* NSData+Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92A33CE615BFAED300F46B97 /* anasaTests.m in Sources */,
+				92A33CF315BFB6C600F46B97 /* NSData+Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
