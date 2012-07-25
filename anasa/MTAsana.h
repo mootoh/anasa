@@ -10,6 +10,6 @@
 
 @interface MTAsana : NSObject
 
-- (void) login:(NSString *)apiKey callback:(void (^)(NSError *))callback;
+- (void) login:(NSString *)apiKey callback:(void (^)(NSError *, NSDictionary *user))callback;
 
 @end

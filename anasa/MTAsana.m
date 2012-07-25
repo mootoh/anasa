@@ -8,12 +8,13 @@
 
 #import "MTAsana.h"
 #import "NSData+Base64.h"
+#import "SBJson/SBJson.h"
 
 #define kASANA_API_URL @"https://app.asana.com/api/1.0"
 
 @implementation MTAsana
 
-- (void) login:(NSString *)apiKey callback:(void (^)(NSError *))callback
+- (void) login:(NSString *)apiKey callback:(void (^)(NSError *, NSDictionary *user))callback
 {
     NSURL *url = [NSURL URLWithString:[kASANA_API_URL stringByAppendingString:@"/users/me"]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -27,15 +28,14 @@
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (error) {
             NSLog(@"error: %@", error);
-            callback(error);
+            callback(error, nil);
             return;
         }
         NSLog(@"status code = %d", [(NSHTTPURLResponse *)response statusCode]);
-        NSString *retString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSLog(@"response = %@", retString);
+        NSDictionary *user = (NSDictionary *)[data JSONValue];
+        NSLog(@"response = %@", user);
 
-        // TODO: parse JSON and create user/workspace object.
-        callback(nil);
+        callback(nil, user);
     }];
 }
 

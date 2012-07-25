@@ -33,7 +33,7 @@
     __block BOOL errorOccurred = NO;
 
     MTAsana *asana = [[MTAsana alloc] init];
-    [asana login:kASANA_API_TOKEN callback:^void(NSError *error) {
+    [asana login:kASANA_API_TOKEN callback:^void(NSError *error, NSDictionary *user) {
         errorOccurred = (error != nil);
         finished = YES;
     }];
