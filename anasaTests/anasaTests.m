@@ -8,8 +8,7 @@
 
 #import "anasaTests.h"
 #import "MTAsana.h"
-
-#define kASANA_API_TOKEN @"your_api_token"
+#import "anasaApiKey.h"
 
 @implementation anasaTests
 

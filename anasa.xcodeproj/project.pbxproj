@@ -107,6 +107,7 @@
 		92A33D1615C01EF100F46B97 /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
 		92A33D1715C01EF100F46B97 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		92A33D1815C01EF100F46B97 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		92A33D4115C0219F00F46B97 /* anasaApiKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = anasaApiKey.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +196,7 @@
 		92A33CDF15BFAED300F46B97 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				92A33D4115C0219F00F46B97 /* anasaApiKey.h */,
 				92A33CE015BFAED300F46B97 /* anasaTests-Info.plist */,
 				92A33CE115BFAED300F46B97 /* InfoPlist.strings */,
 			);
