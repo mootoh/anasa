@@ -12,18 +12,24 @@
 
 #define kASANA_API_URL @"https://app.asana.com/api/1.0"
 
+@implementation MTAsana (Private)
+
+- (void) addBasicAuthentication:(NSMutableURLRequest *)request apiKey:(NSString *)apiKey
+{
+    NSString *credential = [NSString stringWithFormat:@"%@:", apiKey];
+    NSData *credentialData = [credential dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *authValue = [NSString stringWithFormat:@"Basic %@", [credentialData base64EncodingWithLineLength:0]];
+    [request setValue:authValue forHTTPHeaderField:@"Authorization"];
+}
+@end
+
 @implementation MTAsana
 
 - (void) login:(NSString *)apiKey callback:(void (^)(NSError *, NSDictionary *))callback
 {
     NSURL *url = [NSURL URLWithString:[kASANA_API_URL stringByAppendingString:@"/users/me"]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-
-    // make BASIC authentication
-    NSString *credential = [NSString stringWithFormat:@"%@:", apiKey];
-    NSData *credentialData = [credential dataUsingEncoding:NSUTF8StringEncoding];
-    NSString *authValue = [NSString stringWithFormat:@"Basic %@", [credentialData base64EncodingWithLineLength:0]];
-    [request setValue:authValue forHTTPHeaderField:@"Authorization"];
+    [self addBasicAuthentication:request apiKey:apiKey];
 
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (error) {
@@ -40,12 +46,7 @@
 {
     NSURL *url = [NSURL URLWithString:[kASANA_API_URL stringByAppendingFormat:@"/projects?workspace=%@", workspace]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-
-    // make BASIC authentication
-    NSString *credential = [NSString stringWithFormat:@"%@:", apiKey];
-    NSData *credentialData = [credential dataUsingEncoding:NSUTF8StringEncoding];
-    NSString *authValue = [NSString stringWithFormat:@"Basic %@", [credentialData base64EncodingWithLineLength:0]];
-    [request setValue:authValue forHTTPHeaderField:@"Authorization"];
+    [self addBasicAuthentication:request apiKey:apiKey];
 
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (error) {
