@@ -57,4 +57,9 @@
     [self sendAsynchrnousRequest:[NSString stringWithFormat:@"/projects?workspace=%@", workspace] apiKey:apiKey callback:callback];
 }
 
+- (void) tasks:(NSString *)apiKey project:(NSString *)project callback:(void (^)(NSError *, NSObject *projects))callback
+{
+    [self sendAsynchrnousRequest:[NSString stringWithFormat:@"/tasks?project=%@", project] apiKey:apiKey callback:callback];
+}
+
 @end

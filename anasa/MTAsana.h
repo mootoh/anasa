@@ -28,4 +28,6 @@
 
 - (void) projects:(NSString *)apiKey workspace:(NSString *)workspace callback:(void (^)(NSError *, NSObject *projects))callback;
 
+- (void) tasks:(NSString *)apiKey project:(NSString *)project callback:(void (^)(NSError *, NSObject *projects))callback;
+
 @end
