@@ -27,14 +27,11 @@
 
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (error) {
-            NSLog(@"error: %@", error);
             callback(error, nil);
             return;
         }
-        NSLog(@"status code = %d", [(NSHTTPURLResponse *)response statusCode]);
-        NSDictionary *user = (NSDictionary *)[data JSONValue];
-        NSLog(@"response = %@", user);
 
+        NSDictionary *user = [(NSDictionary *)[data JSONValue] objectForKey:@"data"];
         callback(nil, user);
     }];
 }

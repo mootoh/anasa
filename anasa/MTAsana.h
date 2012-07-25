@@ -10,6 +10,20 @@
 
 @interface MTAsana : NSObject
 
+/*
+ * user: {
+ *   email,
+ *   id,
+ *   name,
+ *   workspaces: [
+ *     {
+ *       id,
+ *       name
+ *     },
+ *   ...
+ *   ]
+ * }
+ */
 - (void) login:(NSString *)apiKey callback:(void (^)(NSError *, NSDictionary *user))callback;
 
 @end

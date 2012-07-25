@@ -29,18 +29,22 @@
 - (void)testExample
 {
     __block BOOL finished = NO;
-    __block BOOL errorOccurred = NO;
 
     MTAsana *asana = [[MTAsana alloc] init];
     [asana login:kASANA_API_TOKEN callback:^void(NSError *error, NSDictionary *user) {
-        errorOccurred = (error != nil);
+        STAssertNil(error, @"should succeed");
+
+        NSLog(@"user = %@", user);
+        STAssertNotNil([user objectForKey:@"id"], @"user should have an id");
+
+        NSArray *workspaces = [user objectForKey:@"workspaces"];
+        STAssertTrue([workspaces count] > 0, @"user should have at least one workspace");
+
         finished = YES;
     }];
 
     while (! finished)
         sleep(1);
-
-    STAssertFalse(errorOccurred, @"should succeed in login");
 }
 
 @end
