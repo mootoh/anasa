@@ -26,7 +26,7 @@
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testLogin
 {
     __block BOOL finished = NO;
 
@@ -41,6 +41,28 @@
         STAssertTrue([workspaces count] > 0, @"user should have at least one workspace");
 
         finished = YES;
+    }];
+
+    while (! finished)
+        sleep(1);
+}
+
+- (void)testProjects
+{
+    __block BOOL finished = NO;
+
+    MTAsana *asana = [[MTAsana alloc] init];
+
+    [asana login:kASANA_API_TOKEN callback:^void(NSError *error, NSDictionary *user) {
+        NSArray *workspaces = [user objectForKey:@"workspaces"];
+        [asana projects:kASANA_API_TOKEN workspace:[[workspaces objectAtIndex:0] objectForKey:@"id"] callback:^void(NSError *error, NSArray *projects) {
+            STAssertNil(error, @"should succeed");
+
+            NSLog(@"projects = %@", projects);
+            STAssertTrue([projects count] > 0, @"user should have at least one project");
+
+            finished = YES;
+        }];
     }];
 
     while (! finished)

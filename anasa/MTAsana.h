@@ -26,4 +26,6 @@
  */
 - (void) login:(NSString *)apiKey callback:(void (^)(NSError *, NSDictionary *user))callback;
 
+- (void) projects:(NSString *)apiKey workspace:(NSString *)workspace callback:(void (^)(NSError *, NSArray *projects))callback;
+
 @end
